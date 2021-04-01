@@ -3,9 +3,10 @@ const express = require("express");
 const HttpError = require("../models/http-error");
 const FormModel = require("../models/form-model");
 const { validationResult } = require("express-validator");
+const { testMail } = require("./sendmail-controller.js");
 
 const filledForm = async (req, res, next) => {
-  console.log("filledForm");
+  // console.log("\nfilledForm");
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -18,7 +19,6 @@ const filledForm = async (req, res, next) => {
   const {
     name,
     email,
-    phone,
     IPv4,
     country,
     city,
@@ -26,7 +26,8 @@ const filledForm = async (req, res, next) => {
     lat,
     lon,
     creationDate,
-    windowPixels,
+    windowW,
+    windowH,
   } = req.body;
 
   let newForm;
@@ -34,7 +35,6 @@ const filledForm = async (req, res, next) => {
     newForm = new FormModel({
       name,
       email,
-      phone,
       IPv4,
       country,
       city,
@@ -42,15 +42,17 @@ const filledForm = async (req, res, next) => {
       lat,
       lon,
       creationDate,
-      windowPixels,
+      windowPixels: [windowW, windowH],
     });
-    await newForm.save();
-    res.status(200).json({ message: "ok!" });
+    // await newForm.save();
+    await testMail(newForm.name, newForm.email);
   } catch (err) {
     const error = new HttpError("Error al guardar el tramite.", 422);
     res.status(500).json({ theError: err, data: newForm });
     return next(error);
   }
+
+  await res.status(200).json({ message: "ok!" });
 };
 
 exports.filledForm = filledForm;

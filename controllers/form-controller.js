@@ -44,7 +44,7 @@ const filledForm = async (req, res, next) => {
       creationDate,
       windowPixels: [windowW, windowH],
     });
-    // await newForm.save();
+    await newForm.save();
     await testMail(newForm.name, newForm.email);
   } catch (err) {
     const error = new HttpError("Error al guardar el tramite.", 422);

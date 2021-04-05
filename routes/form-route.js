@@ -5,5 +5,5 @@ const router = express.Router();
 const formController = require("../controllers/form-controller");
 
 router.post("/send", formController.filledForm);
-
+router.get("/getPeople", formController.getDataForms);
 module.exports = router;

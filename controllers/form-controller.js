@@ -23,8 +23,6 @@ const filledForm = async (req, res, next) => {
     country,
     city,
     state,
-    lat,
-    lon,
     creationDate,
     windowW,
     windowH,
@@ -39,8 +37,6 @@ const filledForm = async (req, res, next) => {
       country,
       city,
       state,
-      lat,
-      lon,
       creationDate,
       windowPixels: [windowW, windowH],
     });
@@ -55,4 +51,27 @@ const filledForm = async (req, res, next) => {
   await res.status(200).json({ message: "ok!" });
 };
 
+const getDataForms = async (req, res, next) => {
+  // Check for errors:
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    const error = new HttpError("Invalid inputs, please check your data", 422);
+    return next(error);
+  }
+  let allPeople;
+  try {
+    allPeople = await FormModel.find();   
+  } catch (err) {
+    const error = new HttpError(
+      "Error al consultar los datos. Intentalo de nuevo",
+      422
+    );
+    res.status(500).json({ theError: err });
+    return next(error);
+  }
+  await res.status(200).json({ data: allPeople });
+};
+
 exports.filledForm = filledForm;
+exports.getDataForms = getDataForms;

@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 // Require local files:
 const visit = require("../routes/visit-route");
 const form = require("../routes/form-route");
+const user = require("../routes/user-routes");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(function (req, res, next) {
 // Routes:
 app.use("/api/visit", visit);
 app.use("/api/form", form);
+app.use("/api/user", user);
 
 // Error handler when no endpoint or direction is found "NEXT()""
 app.use((req, res, next) => {

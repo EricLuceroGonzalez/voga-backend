@@ -24,28 +24,29 @@ const testMail = async (user, email) => {
   transporter.sendMail({
     from: process.env.mailUser, // sender address
     to: email, // list of receivers/
-    subject: `Hola. ${userTo}, te mando mi material exclusivo 😈`, // Subject line
+    subject: `Hola. Te mando mi material exclusivo 🐯`, // Subject line
     html: `<div style="
     max-width: 89%;
     margin: 80px auto;
-              background-color: #000000;
-              border: none;
-              font-size: 1.25em;
-              font-weight: 700;
-              padding: 2rem 2rem;
-              color: #ffffff;
-              font-family: 'Montserrat', sans-serif;
-              box-shadow: 0 14px 6px -6px grey;
-            ">
-        <div>Hola, <b>${userTo}</b>, que xopa.</div>
-        <div style="margin-top: 80px">
-            Mensaje del correo de agradecimiento
-    
-        </div>
-        <div style="text-align: center; margin: 90px auto 0px auto">
-            <img width="240px" alt="danny duran logo art" src="https://res.cloudinary.com/dcvnw6hvt/image/upload/v1617084235/danny/danny_logo_iv6s5b.png" />
-        </div>
-    </div>`,
+    background-color: #000000;
+    border: none;
+    font-size: 1.25em;
+    font-weight: 700;
+    padding: 2rem 2rem;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 14px 9px 16px grey;
+  ">
+    <div style="margin-top: 80px; text-align: center;">
+        <p>HAZ CLICK AQUÍ</p>
+        <p>PARA DESCARGAR</p>
+    </div>
+    <div style="text-align: center; margin: 90px auto 0px auto">
+        <img width="290px" 
+        alt="danny duran logo DD" 
+        src="https://res.cloudinary.com/dcvnw6hvt/image/upload/v1617084235/danny/danny_logo_iv6s5b.png" />
+    </div>
+</div>`,
   });
 };
 

@@ -24,7 +24,7 @@ const testMail = async (user, email) => {
   transporter.sendMail({
     from: process.env.mailUser, // sender address
     to: email, // list of receivers/
-    subject: `Hola. Te mando mi material exclusivo 🐯`, // Subject line
+    subject: `${user.split(' ')[0] ? "Hola 🐯" + user.split(' ')[0] :"Hola 🐯"} Te mando mi material exclusivo`, // Subject line
     html: `<div style="
     max-width: 89%;
     margin: 80px auto;
@@ -38,7 +38,7 @@ const testMail = async (user, email) => {
     box-shadow: 14px 9px 16px grey;
   ">
     <div style="margin-top: 80px; text-align: center;">
-        <p>HAZ CLICK AQUÍ</p>
+        <p>REVISA EL ADJUNTO</p>
         <p>PARA DESCARGAR</p>
     </div>
     <div style="text-align: center; margin: 90px auto 0px auto">
@@ -47,6 +47,13 @@ const testMail = async (user, email) => {
         src="https://res.cloudinary.com/dcvnw6hvt/image/upload/v1617084235/danny/danny_logo_iv6s5b.png" />
     </div>
 </div>`,
+    attachments: [
+      {
+        // use URL as an attachment
+        filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
+        path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+      },
+    ],
   });
 };
 

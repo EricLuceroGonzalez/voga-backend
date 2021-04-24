@@ -5,9 +5,10 @@ const HttpError = require("../models/http-error");
 
 var transporter = nodemailer.createTransport({
   host: "mail.dannyduranmusic.com",
-  port: "465",
+  port: "587",
   auth: {
     user: process.env.mailUser,
+    
     pass: process.env.mailPas,
   },
 });

@@ -165,7 +165,7 @@ const login = async (req, res, next) => {
       id: existingUser._id,
       name: existingUser.name,
     };
-    token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "120s" });
+    token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "12h" });
   } catch (err) {
     const error = new HttpError(
       "Hubo un error en el registro, por favor inténtalo de nuevo.",

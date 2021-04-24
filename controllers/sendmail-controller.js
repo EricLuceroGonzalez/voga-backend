@@ -56,7 +56,7 @@ const testMail = async (user, email) => {
         // use URL as an attachment
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
         path:
-          "https://bh8928.banahosting.com:2083/cpsess5999520071/frontend/paper_lantern/filemanager/showfile.html?file=Danny+Duran+ft+Alkilados+-+Misterio.mp3&fileop=&dir=%2Fhome%2Fofzcmvde%2Fmedia_assets&dirop=&charset=&file_charset=&baseurl=&basedir=",
+          "https://unnativodigital.github.io/dannyduranmusic/Danny%20Duran%20ft%20Alkilados%20-%20Misterio%20(epMastering).mp3",
         // path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
       },
     ],

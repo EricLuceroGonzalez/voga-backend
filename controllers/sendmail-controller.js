@@ -8,7 +8,7 @@ var transporter = nodemailer.createTransport({
   port: "587",
   auth: {
     user: process.env.mailUser,
-    
+
     pass: process.env.mailPas,
   },
 });
@@ -26,7 +26,9 @@ const testMail = async (user, email) => {
   transporter.sendMail({
     from: process.env.mailUser, // sender address
     to: email, // list of receivers/
-    subject: `${user.split(' ')[0] ? "Hola 🐯" + user.split(' ')[0] :"Hola 🐯"} Te mando mi material exclusivo`, // Subject line
+    subject: `${
+      user.split(" ")[0] ? "Hola 🐯" + user.split(" ")[0] : "Hola 🐯"
+    } Te mando mi material exclusivo`, // Subject line
     html: `<div style="
     max-width: 89%;
     margin: 80px auto;
@@ -53,7 +55,9 @@ const testMail = async (user, email) => {
       {
         // use URL as an attachment
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-        path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+        path:
+          "https://bh8928.banahosting.com:2083/cpsess5999520071/frontend/paper_lantern/filemanager/showfile.html?file=Danny+Duran+ft+Alkilados+-+Misterio.mp3&fileop=&dir=%2Fhome%2Fofzcmvde%2Fmedia_assets&dirop=&charset=&file_charset=&baseurl=&basedir=",
+        // path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
       },
     ],
   });

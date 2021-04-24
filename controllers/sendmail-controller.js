@@ -4,7 +4,8 @@ const nodemailer = require("nodemailer");
 const HttpError = require("../models/http-error");
 
 var transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "mail.dannyduranmusic.com",
+  port: "465",
   auth: {
     user: process.env.mailUser,
     pass: process.env.mailPas,

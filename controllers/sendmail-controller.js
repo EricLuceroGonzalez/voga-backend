@@ -55,10 +55,10 @@ const testMail = async (user, email) => {
       {
         // use URL as an attachment
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-        path:
+        // path:
           // "http://dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
-          "https://github.com/unnativodigital/dannyduranmusic/raw/main/Danny%20Duran%20ft%20Alkilados%20-%20Misterio%20(epMastering).mp3"
-        // path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+          // "https://github.com/unnativodigital/dannyduranmusic/raw/main/Danny%20Duran%20ft%20Alkilados%20-%20Misterio%20(epMastering).mp3"
+        path: "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
       },
     ],
   });

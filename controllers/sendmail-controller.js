@@ -8,7 +8,6 @@ var transporter = nodemailer.createTransport({
   port: "587",
   auth: {
     user: process.env.mailUser,
-
     pass: process.env.mailPas,
   },
 });
@@ -54,8 +53,7 @@ const testMail = async (user, email) => {
     attachments: [
       {
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-        path:
-          "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+        path:"https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
       },
     ],
   });

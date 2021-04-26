@@ -5,7 +5,7 @@ const HttpError = require("../models/http-error");
 
 var transporter = nodemailer.createTransport({
   host: "bh8928.banahosting.com",
-  port: "587",
+  port: "465",
   auth: {
     user: process.env.mailUser,
     pass: process.env.mailPas,

@@ -10,7 +10,7 @@ const filledForm = async (req, res, next) => {
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors);
+    // console.log(errors);
     const error = new HttpError("Invalid inputs, please check your data", 422);
     return next(error);
   }
@@ -19,6 +19,7 @@ const filledForm = async (req, res, next) => {
   const {
     name,
     email,
+    gender,
     IPv4,
     country,
     city,
@@ -33,6 +34,7 @@ const filledForm = async (req, res, next) => {
     newForm = new FormModel({
       name,
       email,
+      gender,
       IPv4,
       country,
       city,
@@ -44,10 +46,9 @@ const filledForm = async (req, res, next) => {
     await testMail(newForm.name, newForm.email);
   } catch (err) {
     const error = new HttpError("Error al guardar el tramite.", 422);
-    res.status(500).json({ theError: err, data: newForm });
+    await res.status(500).json({ theError: err });
     return next(error);
   }
-
   await res.status(200).json({ message: "ok!" });
 };
 
@@ -55,13 +56,13 @@ const getDataForms = async (req, res, next) => {
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors);
+    // console.log(errors);
     const error = new HttpError("Invalid inputs, please check your data", 422);
     return next(error);
   }
   let allPeople;
   try {
-    allPeople = await FormModel.find();   
+    allPeople = await FormModel.find();
   } catch (err) {
     const error = new HttpError(
       "Error al consultar los datos. Intentalo de nuevo",

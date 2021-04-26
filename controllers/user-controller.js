@@ -104,7 +104,7 @@ const signup = async (req, res, next) => {
 // @desc Login user and return JWT token
 // @access Public
 const login = async (req, res, next) => {
-    console.log(`\n login`);
+    // console.log(`\n login`);
     
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -173,7 +173,6 @@ const login = async (req, res, next) => {
     );
     return next(error);
   }
-console.log("finish");
 
   res.status(201).json({
     name: existingUser.name.name,

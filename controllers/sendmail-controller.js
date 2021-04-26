@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const HttpError = require("../models/http-error");
 
 var transporter = nodemailer.createTransport({
-  host: "mail.dannyduranmusic.com",
+  host: "bh8928.banahosting.com",
   port: "587",
   auth: {
     user: process.env.mailUser,
@@ -52,7 +52,7 @@ const testMail = async (user, email) => {
       {
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
         path:
-          "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+          "http://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
       },
     ],
   });

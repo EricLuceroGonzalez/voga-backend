@@ -8,6 +8,7 @@ const FormSchema = new Schema({
   country: { type: String, required: false },
   city: { type: String, required: false },
   state: { type: String, required: false },
+  gender: { type: String, required: false },
   // lat: { type: Number, required: false },
   // lon: { type: Number, required: false },
   creationDate: { type: Date, required: true, default: Date.now },

@@ -9,10 +9,12 @@ const FormSchema = new Schema({
   city: { type: String, required: false },
   state: { type: String, required: false },
   gender: { type: String, required: false },
-  // lat: { type: Number, required: false },
-  // lon: { type: Number, required: false },
   creationDate: { type: Date, required: true, default: Date.now },
-  windowPixels: { type: Array, required: true },
+  device: {
+    windowPixels: { type: Array, required: false },
+    browser: { type: String, required: false },
+    oSystem: { type: String, required: false },
+  },
 });
 
 module.exports = Form = mongoose.model("Form", FormSchema);

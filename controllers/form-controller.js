@@ -2,6 +2,7 @@ const express = require("express");
 // const requestIp = require('request-ip');
 const HttpError = require("../models/http-error");
 const FormModel = require("../models/form-model");
+var useragent = require("useragent");
 const { validationResult } = require("express-validator");
 const { testMail } = require("./sendmail-controller.js");
 
@@ -12,6 +13,19 @@ const filledForm = async (req, res, next) => {
   if (!errors.isEmpty()) {
     // console.log(errors);
     const error = new HttpError("Invalid inputs, please check your data", 422);
+    return next(error);
+  }
+  let brow;
+  let oSyst;
+  // Get the headers
+  // if (errors.isEmpty()) {
+  try {
+    var agent = useragent.parse(req.headers["user-agent"]);
+    var agentInfo = agent.toString(); // 'Chrome 15.0.874 / Mac OS X 10.8.1'
+    brow = agentInfo.split(" /")[0].split(" ")[0];
+    oSyst = agentInfo.split("/")[1].split(" ")[1];
+  } catch (err) {
+    const error = new HttpError("Cant check the user agents", 422);
     return next(error);
   }
 
@@ -29,8 +43,8 @@ const filledForm = async (req, res, next) => {
     windowH,
   } = req.body;
 
-  let newForm;
   try {
+    let newForm;
     newForm = new FormModel({
       name,
       email,
@@ -40,10 +54,15 @@ const filledForm = async (req, res, next) => {
       city,
       state,
       creationDate,
-      windowPixels: [windowW, windowH],
+      device: {
+        windowPixels: [windowW, windowH],
+        browser: brow ? brow : "NaN",
+        oSystem: oSyst ? oSyst : "NaN",
+      },
     });
     await newForm.save();
     await testMail(newForm.name, newForm.email);
+    console.log(newForm);
   } catch (err) {
     const error = new HttpError("Error al guardar el tramite.", 422);
     await res.status(500).json({ theError: err });

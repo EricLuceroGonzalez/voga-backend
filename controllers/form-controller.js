@@ -4,9 +4,10 @@ const HttpError = require("../models/http-error");
 const FormModel = require("../models/form-model");
 var useragent = require("useragent");
 const { validationResult } = require("express-validator");
+const { testMail } = require("./sendmail-controller");
 
 const filledForm = async (req, res, next) => {
-  // console.log("\nfilledForm");
+  console.log("\nfilledForm");
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -60,14 +61,13 @@ const filledForm = async (req, res, next) => {
       },
     });
     await newForm.save();
-    await testMail(newForm.name, newForm.email);
-    console.log(newForm);
+    testMail(newForm.name, newForm.email);
+    await res.status(200).json({ message: "ok!" });
   } catch (err) {
     const error = new HttpError("Error al guardar el tramite.", 422);
     await res.status(500).json({ theError: err });
     return next(error);
   }
-  await res.status(200).json({ message: "ok!" });
 };
 
 const getDataForms = async (req, res, next) => {

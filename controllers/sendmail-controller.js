@@ -3,26 +3,17 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const HttpError = require("../models/http-error");
 
+// bh8928.banahosting.com
 var transporter = nodemailer.createTransport({
-  host: "bh8928.banahosting.com",
+  host: "mail.dannyduranmusic.com",
   port: "465",
   auth: {
     user: process.env.mailUser,
     pass: process.env.mailPas,
   },
 });
-const testMail = async (user, email) => {
-  //   console.log("testMail");
-  //   let userTo;
-  //   try {
-  let userTo = await user.split(" ")[0];
-  //   console.log(userTo);
-
-  //   } catch (error) {
-  // console.log(error);
-  //   }
-
-  await transporter.sendMail({
+const testMail = (user, email) => {
+  transporter.sendMail({
     from: process.env.mailUser, // sender address
     to: email, // list of receivers/
     subject: `Te mando mi material exclusivo`, // Subject line
@@ -51,8 +42,8 @@ const testMail = async (user, email) => {
     attachments: [
       {
         filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-        path:
-          "http://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
+        href:
+          "https://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
       },
     ],
   });

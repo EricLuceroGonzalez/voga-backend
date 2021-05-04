@@ -4,17 +4,28 @@ const nodemailer = require("nodemailer");
 const HttpError = require("../models/http-error");
 
 // bh8928.banahosting.com
-var transporter = nodemailer.createTransport({
-  host: "mail.dannyduranmusic.com",
-  port: "465",
-  auth: {
-    user: process.env.mailUser,
-    pass: process.env.mailPas,
-  },
-});
-const testMail = (user, email) => {
-  transporter.sendMail({
-    from: process.env.mailUser, // sender address
+
+const testMail = async (user, email) => {
+  var transporter = await nodemailer.createTransport({
+    name: "dannyduranmusic.com",
+    host: "mail.dannyduranmusic.com",
+    port: "465",
+    auth: {
+      user: process.env.mailUser,
+      pass: process.env.mailPas,
+    },
+  });
+
+  // var transporter = nodemailer.createTransport({
+  //   host: "smtp.mailtrap.io",
+  //   port: 2525,
+  //   auth: {
+  //     user: "323f43fd5599c6",
+  //     pass: "bf296b73b4ffbf",
+  //   },
+  // });
+  await transporter.sendMail({
+    from: `Danny Duran Music<${process.env.mailUser}>`, // sender address
     to: email, // list of receivers/
     subject: `Te mando mi material exclusivo`, // Subject line
     html: `<div style="
@@ -45,6 +56,11 @@ const testMail = (user, email) => {
         href:
           "https://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
       },
+      // {
+      //   filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
+      //   href:
+      //     "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
+      // },
     ],
   });
 };

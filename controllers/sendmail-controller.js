@@ -5,8 +5,8 @@ const HttpError = require("../models/http-error");
 
 // bh8928.banahosting.com
 
-const testMail = async (user, email) => {
-  var transporter = await nodemailer.createTransport({
+const testMail = (user, email) => {
+  var transporter = nodemailer.createTransport({
     name: "dannyduranmusic.com",
     host: "mail.dannyduranmusic.com",
     port: "465",
@@ -24,7 +24,7 @@ const testMail = async (user, email) => {
   //     pass: "bf296b73b4ffbf",
   //   },[email, 'hola@dannyduranmusic.com']
   // });
-  await transporter.sendMail({
+  transporter.sendMail({
     from: `Danny Duran Music<${process.env.mailUser}>`, // sender address
     to: `${email}`, // list of receivers/
     subject: `Te mando mi material exclusivo`, // Subject line

@@ -22,11 +22,11 @@ const testMail = async (user, email) => {
   //   auth: {
   //     user: "323f43fd5599c6",
   //     pass: "bf296b73b4ffbf",
-  //   },
+  //   },[email, 'hola@dannyduranmusic.com']
   // });
   await transporter.sendMail({
     from: `Danny Duran Music<${process.env.mailUser}>`, // sender address
-    to: email, // list of receivers/
+    to: `${email}`, // list of receivers/
     subject: `Te mando mi material exclusivo`, // Subject line
     html: `<div style="
     max-width: 89%;

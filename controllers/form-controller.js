@@ -7,6 +7,7 @@ const { validationResult } = require("express-validator");
 const { testMail } = require("./sendmail-controller");
 
 const filledForm = async (req, res, next) => {
+  console.log('filledForm');
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

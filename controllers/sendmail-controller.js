@@ -3,29 +3,18 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const HttpError = require("../models/http-error");
 
-// bh8928.banahosting.com
-
 const testMail = (user, email) => {
+
   var transporter = nodemailer.createTransport({
-    name: "dannyduranmusic.com",
-    host: "mail.dannyduranmusic.com",
-    port: "465",
+    service: "gmail",
     auth: {
       user: process.env.mailUser,
       pass: process.env.mailPas,
     },
   });
 
-  // var transporter = nodemailer.createTransport({
-  //   host: "smtp.mailtrap.io",
-  //   port: 2525,
-  //   auth: {
-  //     user: "323f43fd5599c6",
-  //     pass: "bf296b73b4ffbf",
-  //   },[email, 'hola@dannyduranmusic.com']
-  // });
   transporter.sendMail({
-    from: `Danny Duran Music<${process.env.mailUser}>`, // sender address
+    from: `Kooky Music<${process.env.mailUser}>`, // sender address
     to: `${email}`, // list of receivers/
     subject: `Te mando mi material exclusivo`, // Subject line
     html: `<div style="
@@ -46,22 +35,17 @@ const testMail = (user, email) => {
     </div>
     <div style="text-align: center; margin: 90px auto 0px auto">
         <img width="290px" 
-        alt="danny duran logo DD" 
-        src="https://res.cloudinary.com/dcvnw6hvt/image/upload/v1617084235/danny/danny_logo_iv6s5b.png" />
+        alt="Artist logo DD" 
+        src="https://res.cloudinary.com/dcvnw6hvt/image/upload/v1626381372/voga/kooky/logo-kooky_nb2h1c.png" />
     </div>
 </div>`,
-    attachments: [
-      {
-        filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-        href:
-          "https://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
-      },
-      // {
-      //   filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
-      //   href:
-      //     "https://res.cloudinary.com/dcvnw6hvt/video/upload/v1618976607/danny/Tema%20nuevo/Danny_Duran_ft_Alkilados_-_Misterio_h3ykjr.mp3",
-      // },
-    ],
+    // attachments: [
+    //   {
+    //     filename: "Danny_Duran_ft_Alkilados_-_Misterio.mp3",
+    //     href:
+    //       "https://www.dannyduranmusic.com/media_assets/Danny_Duran_ft_Alkilados_Misterio.mp3",
+    //   },
+    // ],
   });
 };
 

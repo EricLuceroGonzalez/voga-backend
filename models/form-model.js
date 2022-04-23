@@ -9,6 +9,10 @@ const FormSchema = new Schema({
   city: { type: String, required: false },
   state: { type: String, required: false },
   gender: { type: String, required: false },
+  location: {
+    lat: { type: Number, required: false },
+    lon: { type: Number, required: false },
+  },
   creationDate: { type: Date, required: true, default: Date.now },
   device: {
     windowPixels: { type: Array, required: false },

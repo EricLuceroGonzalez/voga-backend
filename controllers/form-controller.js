@@ -7,7 +7,7 @@ const { validationResult } = require("express-validator");
 const { testMail } = require("./sendmail-controller");
 
 const filledForm = async (req, res, next) => {
-  console.log('filledForm');
+  console.log("filledForm");
   // Check for errors:
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -39,6 +39,8 @@ const filledForm = async (req, res, next) => {
     city,
     state,
     creationDate,
+    lat,
+    lon,
     windowW,
     windowH,
   } = req.body;
@@ -52,6 +54,10 @@ const filledForm = async (req, res, next) => {
       IPv4,
       country,
       city,
+      location: {
+        lat: lat,
+        lon: lon,
+      },
       state,
       creationDate,
       device: {
